@@ -18,7 +18,9 @@ int tailLength = 1;
 while (true)
 {
     Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("Score: " + score);
+    Console.ResetColor();
 
     snakePosition.ApplyMovementDirection(movementDirection);
     
