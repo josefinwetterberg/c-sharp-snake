@@ -8,7 +8,7 @@ Coord snakePosition = new Coord(10, 1);
 Random random = new Random();
 
 Coord applePosition = new Coord(random.Next(1, gridDimensions.X-1), random.Next(1, gridDimensions.Y-1));
-int frameDelayInMilliseconds = 100;
+int frameDelayInMilliseconds = 500;
 
 Direction movementDirection = Direction.Down;
 
@@ -29,7 +29,11 @@ while (true)
             Coord currentCoord = new Coord(x, y);
 
             if (snakePosition.Equals(currentCoord) || snakePositionHistory.Contains(currentCoord))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write('■');
+                Console.ResetColor();
+            }
 
             else if (applePosition.Equals(currentCoord))
             {
@@ -51,6 +55,7 @@ while (true)
         tailLength++;
         score++;
         applePosition = new Coord(random.Next(1, gridDimensions.X - 1), random.Next(1, gridDimensions.Y - 1));
+        frameDelayInMilliseconds = frameDelayInMilliseconds / 2;
     }
     else if (snakePosition.X == 0 || snakePosition.Y == 0 || snakePosition.X == gridDimensions.X - 1 || snakePosition.Y == gridDimensions.Y - 1 || snakePositionHistory.Contains(snakePosition))
     {
@@ -59,6 +64,7 @@ while (true)
         snakePosition = new Coord(10, 1);
         snakePositionHistory.Clear();
         movementDirection = Direction.Down;
+        frameDelayInMilliseconds = 500;
         continue;
     }
     
